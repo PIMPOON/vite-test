@@ -199,6 +199,216 @@
   color: var(--muted);
 }
 
+/* Materials (advanced) */
+.materials .materials-head {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.materials-cards {
+  display: grid;
+  gap: 18px;
+}
+@media (min-width: 640px) {
+  .materials-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .materials-cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+.mat-card {
+  padding: 16px;
+  background:
+    radial-gradient(120% 120% at 20% 20%, rgba(108,140,255,0.08), transparent 50%),
+    radial-gradient(120% 120% at 80% 80%, rgba(154,108,255,0.08), transparent 50%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.mat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow);
+  border-color: rgba(124,77,255,0.35);
+}
+
+.mat-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.mat-head h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  box-shadow: var(--glow);
+}
+
+.metric {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+.metric-title {
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Bubble levels */
+.bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.bubble {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+.bubble.is-filled {
+  transform: translateY(-1px);
+}
+@media (min-width: 1024px) {
+  .bubble { width: 16px; height: 16px; }
+}
+
+/* Thermometer */
+.thermo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.thermo-bar {
+  position: relative;
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+.thermo-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  border-radius: 999px;
+  box-shadow: 0 0 16px rgba(124,77,255,0.15);
+  transition: width .6s ease;
+}
+.thermo-chip {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-weight: 700;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(0,0,0,0.85); /* darker overlay */
+}
+.modal {
+  width: min(720px, 92vw);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(0deg, rgba(11,15,20,0.96), rgba(11,15,20,0.96)), /* more opaque base */
+    radial-gradient(120% 120% at 20% 20%, rgba(108,140,255,0.10), transparent 50%),
+    radial-gradient(120% 120% at 80% 80%, rgba(154,108,255,0.08), transparent 50%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 18px;
+  box-shadow: var(--glow);
+  animation: modal-in .18s ease both;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center the title */
+  gap: 8px;
+  position: relative;
+  text-align: center;
+}
+.modal-header h3 {
+  margin: 0;
+  text-align: center; /* ensure centered text */
+  width: 100%;
+}
+.modal-close {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  color: var(--muted);
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  font-weight: 800;
+  cursor: pointer;
+  position: absolute;       /* pin to the right while title stays centered */
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;            /* center the “X” */
+  place-items: center;
+  font-size: 0;             /* hide any text, we draw the X with CSS */
+  line-height: 0;
+  transition: none; /* prevent hover animation from global button rule */
+}
+.modal-close:hover,
+.modal-close:active {
+  /* keep the vertical centering and avoid global translateY(-1px) */
+  transform: translateY(-50%);
+}
+
+/* Centered X icon */
+.modal-close::before,
+.modal-close::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 2px;
+  background: var(--muted);
+  border-radius: 2px;
+  transform-origin: center;
+  pointer-events: none;
+}
+.modal-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.modal-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.modal-close:hover::before,
+.modal-close:hover::after {
+  background: var(--text);
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(4px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 /* CTA */
 .cta {
   display: grid;
@@ -231,4 +441,178 @@
 @media (min-width: 1024px) {
   .tile { grid-column: span 4; }
   .service { grid-column: span 4; }
+}
+
+/* Materials — table visualization */
+.materials-table-wrap {
+  margin-top: 10px;
+  overflow-x: auto;
+}
+.mtable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.mtable thead th {
+  font-weight: 800;
+  text-align: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(120% 120% at 20% 20%, rgba(108,140,255,0.06), transparent 50%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  position: relative; /* allow the tooltip to anchor to full header cell */
+}
+/* Stretch header hover target to the full cell */
+.mtable thead th .spec-tip {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.mtable .spec-head {
+  text-align: left;
+}
+.mtable tbody th.spec-cell {
+  text-align: left;
+  padding: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+.mtable tbody td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.head-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+.head-cell .swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  box-shadow: var(--glow);
+}
+
+/* Segmented meter (no bubbles) */
+.segmeter {
+  display: inline-flex;
+  gap: 6px;
+  padding: 2px 0;
+}
+.seg {
+  width: 12px;
+  height: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  transition: transform .12s ease, background .2s ease, box-shadow .2s ease;
+}
+.seg.is-on {
+  transform: translateY(-1px);
+}
+@media (min-width: 1024px) {
+  .seg { width: 14px; height: 12px; }
+}
+
+/* Compact thermometer for temperature */
+.thermo-mini {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+}
+.temp-chip {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-weight: 700;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  font-size: 12px;
+}
+.thermo-track {
+  position: relative;
+  width: 100%;
+  max-width: 160px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+.thermo-val {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(124,77,255,0.2);
+  transition: width .6s ease;
+}
+
+/* Materials spec tooltip */
+.spec-tip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: help;
+}
+.tip-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: var(--muted);
+}
+.tip-content {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translate(-50%, -6px) scale(0.98);
+  width: max-content;
+  max-width: 260px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(120% 120% at 20% 20%, rgba(108,140,255,0.08), transparent 50%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  color: var(--text);
+  box-shadow: var(--glow);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .08s ease, transform .08s ease, visibility .08s; /* faster show */
+  z-index: 20;
+  pointer-events: none;
+}
+/* Show tooltip when hovering the whole header cell, not just the text */
+.mtable thead th:hover .tip-content,
+.mtable thead th:focus-within .tip-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -10px) scale(1);
+}
+.tip-arrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }

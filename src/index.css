@@ -54,10 +54,14 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  /* Updated background with image + overlays */
   background:
+    linear-gradient(0deg, rgba(11, 15, 20, 0.65), rgba(11, 15, 20, 0.65)),
     radial-gradient(1200px 800px at 90% -20%, rgba(156, 106, 255, 0.08), transparent 60%),
     radial-gradient(900px 600px at -10% 20%, rgba(108, 140, 255, 0.10), transparent 60%),
-    var(--bg);
+    /* url('./assets/printer_bg.jpg') center / cover no-repeat fixed, */
+    /* var(--bg); */
 }
 
 h1, h2, h3 {
@@ -133,5 +137,15 @@ hr {
   }
   button {
     background-color: #f9f9f9;
+  }
+
+  /* Slightly stronger overlay in light mode for contrast */
+  body {
+    background:
+      linear-gradient(0deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+      radial-gradient(1200px 800px at 90% -20%, rgba(156, 106, 255, 0.08), transparent 60%),
+      radial-gradient(900px 600px at -10% 20%, rgba(108, 140, 255, 0.10), transparent 60%),
+      url('./assets/printer_bg.jpg') center / cover no-repeat fixed,
+      #ffffff;
   }
 }
