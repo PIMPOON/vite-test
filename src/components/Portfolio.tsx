@@ -65,7 +65,7 @@ export const Portfolio = () => {
               ) : (
                 <div className="thumb relative h-[400px] overflow-hidden">
                   <img
-                    src={item.image}
+                    // src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   />
