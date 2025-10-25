@@ -1,5 +1,5 @@
 import { ModelViewer } from "./ModelViewer";
-// import { samplePrint } from "@/assets/sample_print.jpg";
+// import { samplePrint } from "./assets/sample_print.jpg";
 
 const portfolioItems = [
   {

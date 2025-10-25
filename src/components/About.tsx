@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { GraduationCap, Heart, Users, Award, Sparkles } from 'lucide-react'
 
 export const About = () => {
