@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/vite-test/',
+  base: '/3D-Portfolio/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -20,5 +20,8 @@ export default defineConfig({
         assetFileNames: 'assets/[name].[ext]'
       }
     }
-  }
+  },
+  server: {
+    port: 8080,
+  },
 });
